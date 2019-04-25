@@ -1,17 +1,21 @@
 module Api
   module V1
     class RecordsController < ApplicationController
+      before_action :authorize_access_request!
       before_action :set_record, only: [:show, :edit, :update, :destroy]
 
       # GET /records
       # GET /records.json
       def index
-        @records = Record.all
+        @records = current_user.records.all
+
+        render json: @records
       end
 
       # GET /records/1
       # GET /records/1.json
       def show
+        render json: @record
       end
 
       # GET /records/new
@@ -26,7 +30,7 @@ module Api
       # POST /records
       # POST /records.json
       def create
-        @record = Record.new(record_params)
+        @record = current_user.records.build(record_params)
 
         respond_to do |format|
           if @record.save
@@ -66,12 +70,12 @@ module Api
       private
         # Use callbacks to share common setup or constraints between actions.
         def set_record
-          @record = Record.find(params[:id])
+          @record = current_user.records.find(params[:id])
         end
 
         # Never trust parameters from the scary internet, only allow the white list through.
         def record_params
-          params.require(:record).permit(:title, :year, :artist_id, :user_id)
+          params.require(:record).permit(:title, :year, :artist_id)
         end
     end
   end
