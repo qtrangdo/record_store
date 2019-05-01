@@ -1,7 +1,10 @@
 {
   "name": "recordstore",
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "axios": "^0.18.0",
+    "vue-axios": "^2.1.4"
+  },
   "devDependencies": {
     "tailwindcss": "^0.7.4"
   }
