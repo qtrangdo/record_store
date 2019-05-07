@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-sm m-auto my-8">
     <div class="border p-10 boder-grey-light shadow rounded">
-      <h3 class="text-2xl mb-6 text-grey-darkst">SignIn</h3>
+      <h3 class="text-2xl mb-6 text-grey-darkst">Sign In</h3>
       <form @submit.prevent="signin">
         <div class="text-red" v-if="error">{{ error }}</div>
         <div class="mb-6">
